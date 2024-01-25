@@ -794,10 +794,6 @@ async function setArtistSongs(artistId, artistName){
 
 export function addSongToLiked(clickedSong, isFromPlayer, isFromLiked){
   let songIdToLike = clickedSong.getAttribute('data-songid');
-  if(isFromLiked){
-    clickedSong.parentElement.remove();
-    setNumberOfLikedSongs();
-  }
   if(songIdToLike != null || songIdToLike != undefined){
     get(child(dbRef, "Users/" + currentUserUID)).then((snapshot) => {
       if(snapshot.exists()){
@@ -830,6 +826,7 @@ export function addSongToLiked(clickedSong, isFromPlayer, isFromLiked){
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.remove('songLikedBtn');
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.remove('fa-solid');
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.add('fa-regular');
+              refreshLiked();
             }
           }).catch((error)=>{
             console.log(error.message);
@@ -860,6 +857,7 @@ export function addSongToLiked(clickedSong, isFromPlayer, isFromLiked){
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.add('songLikedBtn');
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.remove('fa-regular');
               clickedSong.parentElement.children[clickedSong.parentElement.children.length-2].classList.add('fa-solid');
+              refreshLiked();
             }
           }).catch((error)=>{
             console.log(error.message);
