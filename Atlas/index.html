@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas</title>
+    <link rel="shortcut icon" href="Images/AtlasLogobyDesignerLight.png" type="image/x-icon">
+    <link rel="stylesheet" href="Css/default.css">
+    <script type="module" src="Js/main.js"></script>
+    <script src="Js/index.js" defer></script>
+    <script src="https://kit.fontawesome.com/1d408b5acd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="Css/artistpage.css">
+    <link rel="stylesheet" href="Css/likedpage.css">
+</head>
+<body>
+    <header>
+        <div class="searchBar" id="magnifier1">
+            <label for="searchInput"><i id="magnifier2" class="fa-solid fa-magnifying-glass"></i></label>
+            <input id="searchInput" type="search" placeholder="Search">
+            <ul id="resultsHolder" class="displayNone">
+            </ul>
+        </div>
+
+        <div class="userInfoHolder" onclick="setOpenPage(this,'settings')">
+            <p><b><span name="displayName">Nikola</span></b></p>
+            <img onerror="this.src = `Images/noProfilePhoto.png`" src="https://th.bing.com/th/id/OIP.LspASDIC8ycohtw29cD2RgHaGl?rs=1&pid=ImgDetMain" alt="User Profile Picture" name="pfp">
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html"><img class="atlasLogo" src="Images/AtlasLogobyDesignerLight.png" alt="Atlas Logo"></a>
+
+        <div class="navLinks">
+            <a onclick="setOpenPage(this,'home')" class="activeNav"><i class="fa-solid fa-house"></i></a>
+            <a onclick="setOpenPage(this,'favorites')"><i class="fa-brands fa-gratipay"></i></a>
+            <a onclick="setOpenPage(this,'info')"><i class="fa-solid fa-circle-info"></i></a>
+        </div>
+
+        <div class="navLinks">
+            <a onclick="setOpenPage(this,'settings')"><i class="fa-solid fa-gear"></i></a>
+            <a id="googleSignOutBtn"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <a id="adminUploader" class="displayNone" href="atlasUploader.html"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+        </div>
+    </nav>
+
+    <div class="loginScreen">
+        <img src="Images/AtlasLogobyDesignerLight.png" alt="">
+        <form id="loginForm">
+            <h2>Register</h2>
+            <div>
+                <label for="displayNameInput">Display Name</label>
+                <input type="text" placeholder="Display Name" aria-placeholder="Display Name" id="displayNameInput" name="accountLogin" required>
+            </div>
+            <div>
+                <label for="emailInput">Email</label>
+                <input type="text" placeholder="Email" aria-placeholder="Email" id="emailInput" name="accountLogin">
+            </div>
+            <div>
+                <label for="passwordInput">Password</label>
+                <input type="password" placeholder="Password" aria-placeholder="Password" id="passwordInput" name="accountLogin">
+            </div>
+            <p>Already Have An Account?&nbsp;<span onclick="switchForm(this, true)" class="highlightText">Log In!</span></p>
+            <p class="errorMessage"></p>
+            <div>
+                <button type="submit" id="logInBtn" class="displayNone">Log in</button>
+                <button type="submit" id="registerBtn">Register</button>
+                <button type="button" id="signInGoogleBtn"><i class="fa-brands fa-google"></i>Google</button>
+            </div>
+        </form>
+    </div>
+
+    <main class="homePage" >
+        <section class="recommended">
+            <div class="recommendedArtist">
+                <img class="recBack" src="https://th.bing.com/th/id/OIP.LspASDIC8ycohtw29cD2RgHaGl?rs=1&pid=ImgDetMain" alt="Recommended Playlist Image" id="recommendedArtistBanner">
+                <img id="recommendedPP" src="https://th.bing.com/th/id/OIP.LspASDIC8ycohtw29cD2RgHaGl?rs=1&pid=ImgDetMain" alt="">
+                <div class="recInfoHolder">
+                    <p>Recommended artist</p>
+                        <div>
+                        <h1 onclick="openArtistPage(this)" id="recommendedArtistName"></h1>
+                        <h5 id="recommendedArtistDesc">                 
+                        </h5>
+                    </div>
+                <div>
+                    <i class="fa-solid fa-users"></i>&nbsp;&nbsp;&nbsp;<span id="recommendedArtistFollowers">0 Followers</span>
+                </div>
+                </div>
+                <div class="topChartsHolder">
+                    <div>
+                    <ul class="horizontalSongHolder" id="recommendedArtistTopSongs" name="songHolders">
+                                      
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="newReleases scrollableSection">
+            <h2>New Releases
+                <div>
+                    <button onclick="scrollSection('newReleasesHolder', false)"><i class="fa-solid fa-angle-left"></i></button>
+                    <button onclick="scrollSection('newReleasesHolder', true)"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </h2>
+            <!--  -->
+            <ul class="newReleasesHolder holder" name="songHolders">
+
+            </ul>
+        </section>
+        <section class="newReleases scrollableSection">
+            <h2>Some random songs to lighten up the mood!
+                <div>
+                    <button onclick="scrollSection('randomSongsHolder', false)"><i class="fa-solid fa-angle-left"></i></button>
+                    <button onclick="scrollSection('randomSongsHolder', true)"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </h2>
+            <!--  -->
+            <ul class="randomSongsHolder holder" name="songHolders">
+
+            </ul>
+        </section>
+    </main>
+
+    <main class="artistPage displayNone">
+        <div class="artistProfileHolder">
+            <img id="bannerImg" src="" alt="artistBanner" class="artistBanner">
+            <div class="artistDetailsHolder">
+                <img src="" alt="artistProfilePicture" class="artistProfilePicture">
+                <div class="artistDetails">
+                    <h1 id="artistName">QUNI</h1>
+                    <p><i class="fa-solid fa-users"></i>&nbsp;&nbsp;&nbsp;<span id="artistFollowers">0 followers</span></p>
+                    <p id="artistDescription" class="artistDescription">Lorem ipsu corrupti, sapiente nobis blanditiis amet. Corrupti qui quasi odit iste quaerat esse, dolor praesentium. Ad sapiente temporibus, ipsa ratione repellendus saepe reiciendis qui. Accusantium illum quos cum quasi et iusto quas debitis rerum vitae? Quos veritatis explicabo atque est. Eligendi consequatur nulla odit autem nihil!</p>
+                    <button class="Follow" onclick="followArtist(this.getAttribute('data-artistid'))"><i class="fa-solid fa-user-plus"></i><span>Follow</span></button>
+                </div>
+            </div>
+        </div>
+
+        <section class="artistsContent">
+            <div class="artistsSongHolder">
+                <h2><span id="artistsSongHolderName">QUNI</span>'s Songs</h2>
+                <ul id="songsHolder" class="horizontalSongHolder" name="songHolders"></ul>
+            </div>
+        </section>
+    </main>
+
+    <main class="favoritesPage displayNone">
+        <div class="likedSongsInfo">
+            <h2>Liked songs</h2>
+            <p>Your tracks. Truly yours.</p>
+            <p><b><span class="numberOfSongs">0</span></b> liked tracks</p>
+        </div>
+        <!--  -->
+        <ul class="likedSongsHolder" name="songHolders"></ul>
+    </main>
+
+    <main class="infoPage displayNone">
+        <h2>Privacy Policy for Atlas Music</h2>
+        <p>- Welcome to Atlas, the music streaming app. This Privacy Policy outlines how we collect, use, disclose, and protect your information when you use our services. By accessing or using the Atlas app, you agree to the terms outlined in this Privacy Policy.</p>
+        <h2>1. Information We Collect</h2>
+        <p>- Account Information: When you create an account, we collect your email address, username, and password to secure your account.</p>
+        <p>- Profile Information: You may choose to provide additional information such as your name, profile picture, and other details to personalize your account.</p>
+        <p>- Log Data: We collect information about your interactions with the app, including your search queries, listening history, and device information (such as device type, operating system, and version).</p>
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul>
+            <p>- Improving and developing new features.</p>
+            <p>- Analyzing user behavior to enhance user experience.</p>
+            <p>- Communicating with you about your account and service updates.</p>
+        </ul>
+        <h2>3. Third-Party Services</h2>
+        <p>- Atlas may integrate with third-party services, such as Google <i class="fa-brands fa-google"></i>, for features such as social sharing. These services have their own privacy policies, and we recommend reviewing them for information on how they handle your data.</p>
+        <h2>4. Your Choices</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <p>- Access and update your personal information.</p>
+            <p>- Opt-out of marketing communications.</p>
+            <p>- Delete your account and associated data.</p>
+        </ul>
+        <h2>5. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a class="highlightText" href="mailto:qunitalstudios@gmail.com">qunitalstudios@gmail.com</a></p>
+    </main>
+
+    <main class="settingsPage displayNone">
+        <section class="toggleSection">
+            <div class="toggleText">
+                <h2>Theme</h2>
+                <h5>Sets the app theme</h5>
+            </div>
+            <div id="checkboxHolder">
+                <input type="checkbox" onchange="changeTheme(this, this.parentElement.children[1])">
+                <div id="checkboxContent" class="defaultTheme"></div>
+            </div>
+            <br>
+            <h5>Current theme:&nbsp;<b><span id="currentTheme">Dark</span></b></h5>
+        </section>
+    </main>
+
+    <div class="player">
+        <div class="playerInfo">
+            <img src="Images/AtlasLogobyDesignerLight.png" alt="Player Image">
+            <div>
+                <h3>Play a Song</h3>
+                <a id="artistIDPlayer" onclick="openArtistPage(this)" data-artistid="0">To start listening!</a>
+            </div>
+        </div>
+        <div class="playerControls">
+            <div class="controls">
+                <button id="repeatBtn"><i class="fa-solid fa-repeat"></i></button>
+                <button id="backwardsBtn"><i class="fa-solid fa-backward"></i></button>
+                <button id="playBtn"><i class="fa-solid fa-circle-play"></i></button>
+                <button id="forwardsBtn"><i class="fa-solid fa-forward"></i></button>
+                <i id="playerLikeBtn" onclick="addSongToLiked(this, true)" class="fa-regular fa-heart likeIcon"></i>
+            </div>
+            <div class="seek">
+                <label id="startTime" for="seekInput">0:00</label>
+                <div class="seekInputHolder">
+                    <input type="range" name="seek" id="seekInput" value="0">
+                    <div id="seekBody"></div>
+                    <div id="seekPin"></div>
+                </div>
+                <label id="endTime" for="seekInput">0:00</label>
+            </div>
+        </div>
+        <div class="playerVolume">     
+            <label class="volumeIcon" onclick="toggleMuteVolume(this)" for="volumeInput"><i class="fa-solid fa-volume-low"></i></label>
+            <input type="range" name="volume" id="volumeInput" value="10">
+        </div>
+    </div>
+
+    <audio id="audioOutput"></audio>
+
+    <!-- LOADER -->
+    <div id="loaderHolder" class="displayNone">
+        <div id="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script type="module">
+        import { playSong, openArtistPage, toggleMuteVolume, addSongToLiked, searchSongByName, followArtist} from './Js/main.js';
+        window.openArtistPage = openArtistPage;
+        window.playSong = playSong;
+        window.toggleMuteVolume = toggleMuteVolume;
+        window.addSongToLiked = addSongToLiked;
+        window.searchSongByName = searchSongByName;
+        window.followArtist = followArtist;
+    </script>
+</body>
+</html>
