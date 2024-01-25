@@ -1,0 +1,1194 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200;300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root{
+    --primary: #181d24;
+    --primarySeeThrough: rgba(24, 30, 37, 0.7);
+    --secondary: #393e46;
+    --secondarySeeThrough: rgba(57, 62, 70, 0.5);
+    --tertiary: #00c3ff;
+    --secondaryContrast: #9da5bd;
+    --secondaryContrastSeeThrough: rgba(157, 165, 189, 0.2);
+    --primaryContrast: #eee;
+}
+
+body{
+    font-family: 'Oxanium', sans-serif;
+    background-color: var(--primary);
+    background-size: 400%;
+    background-position: left;
+    background-image: linear-gradient(90deg, var(--primary), var(--secondarySeeThrough));
+    color: var(--primaryContrast);
+    animation: bgFade 7.5s ease-in-out infinite;
+
+    display: grid;
+	grid-template: 80px 1fr 1fr/100px 1fr 1fr;
+	gap: 0px 0px;
+	justify-items: stretch;
+	align-items: stretch;
+    transition: all 0.5s ease-in-out;
+}
+
+body::-webkit-scrollbar{
+    -webkit-appearance: none;
+    display: none;
+}
+
+button, input{
+    font-family: 'Oxanium', sans-serif !important;
+}
+
+@keyframes bgFade {
+    0%{ background-position: left; }
+    50%{ background-position: right; }
+    100%{ background-position: left; }
+}
+
+/* ----- HEADER ----- */
+
+header{
+	grid-column:2/4;
+	grid-row:1/2;
+
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 0px;
+    z-index: 3;
+    padding-right: 20px;
+}
+
+.userInfoHolder{
+    background-color: transparent !important;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.userInfoHolder img{
+    width: 50px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.3));
+    transition: all .2s ease-in-out;
+}
+
+.userInfoHolder:hover img{
+    padding: 5px;
+    background-color: var(--secondary);
+}
+
+.userInfoHolder p{
+    font-size: 19px;
+    color: var(--tertiary);
+}
+
+.userInfoHolder:hover p{
+    text-decoration: underline;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    flex-grow: 1;
+    max-width: 25%;
+    min-width: 400px;
+    background-color: var(--secondary);
+    border-radius: 32px;
+    padding-inline: 20px;
+    position: relative;
+    transition: all .2s ease-in-out;
+}
+
+#resultsHolder{
+    background-color: var(--secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 100%;
+    min-height: fit-content;
+    max-height: 60vh;
+    overflow-y: scroll;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    padding: 10px;
+    z-index: -1;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+}
+
+#resultsHolder::-webkit-scrollbar{
+    -webkit-appearance: none;
+    display: none;
+}
+
+#resultsHolder .songItemHorizontal{
+    flex-grow: 0;
+    width: 100%;
+    height: fit-content;    
+    padding-block: 10px;
+    border-radius: 10px;
+}
+
+#resultsHolder .songItemHorizontal .songClickDivHorizontal{
+    z-index: 3;
+}
+
+@media screen and (max-width: 740px) {
+    .searchBar{
+        min-width: calc(100% - 70px);
+        max-width: auto;
+    }
+    .userInfoHolder p{
+        display: none;
+    }
+}
+
+.searchBar input{
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-family: 'Oxanium', sans-serif;
+    color: var(--primaryContrast);
+    font-size: 20px;
+}
+
+.searchBar input::placeholder{
+    color: var(--primaryContrast);
+}
+
+.searchBar label i{
+    color: var(--tertiary);
+}
+
+/* ----- NAV ----- */
+
+nav{
+	grid-column:1/2;
+	grid-row:1/4;
+    background-color: transparent;
+
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+    padding: 20px;
+    gap: 20px;
+    align-items: center;
+    z-index: 2;
+}
+
+nav div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    border-radius: 32px;
+    background-color: var(--secondary);
+    padding: 5px;
+    gap: 5px;
+}
+
+nav div a{
+    cursor: pointer;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    padding: 15px;
+    border-radius: 28px;
+    transition: all .2s ease-in-out;
+    text-decoration: none;
+    color: var(--primaryContrast);
+}
+
+nav div a::after{
+    position: absolute;
+    opacity: 0;
+    content: "";
+    transition: 0.2s ease-in-out;
+    transition-delay: 0.3s;
+    right: -35px;
+}
+
+nav div:nth-child(2) a:nth-child(1):hover::after{
+    content: "Home";
+    right: -29px;
+    opacity: 1;
+}
+nav div:nth-child(2) a:nth-child(2):hover::after{
+    content: "Liked";
+    right: -23px;
+    opacity: 1;
+}
+nav div:nth-child(2) a:nth-child(3):hover::after{
+    content: "Info";
+    right: -14px;
+    opacity: 1;
+}
+nav div:nth-child(3) a:nth-child(1):hover::after{
+    content: "Settings";
+    right: -45px;
+    opacity: 1;
+}
+nav div:nth-child(3) a:nth-child(2):hover::after{
+    content: "Log out";
+    right: -40px;
+    opacity: 1;
+}
+nav div:nth-child(3) a:nth-child(3):hover::after{
+    content: "Upload";
+    right: -37px;
+    opacity: 1;
+}
+
+nav div a i{
+    color: var(--primaryContrast);
+    font-size: 18px;
+    transition: all .2s ease;
+}
+
+nav div a:hover{
+    background-color: var(--primary);
+}
+
+nav div a:hover i{
+    transform: scale(1.2);
+}
+
+nav a img{
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    filter: drop-shadow(0px 0px 50px var(--tertiary));
+    z-index: -1;
+}
+
+.activeNav{
+    background-color: var(--primary);
+}
+.activeNav i{
+    color: var(--tertiary);
+}
+
+/* ----- MAIN ----- */
+
+main{
+	grid-column:2/4;
+	grid-row:2/4;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-bottom: 145px;
+}
+
+section h2{
+    margin-bottom: 20px;
+}
+
+.scrollableSection h2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.scrollableSection h2 div{
+    background-color: var(--secondary);
+    display: flex;
+    gap: 10px;
+    border-radius: 60px;
+    padding: 5px;
+}
+
+.scrollableSection h2 div button{
+    cursor: pointer;
+    background-color: transparent;
+    width: 35px;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 50%;
+    transition: all .2s ease-in-out;
+}
+
+.scrollableSection h2 div button i{
+    color: var(--primaryContrast);
+    font-size: 20px;
+    transition: all .2s ease;
+}
+
+.scrollableSection h2 div button:hover{
+    background-color: var(--primary);
+}
+
+.holder{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    overflow-x: scroll;
+}
+
+.holder::-webkit-scrollbar{
+    display: none;
+}
+
+.songItemVertical{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.songItemVertical img{
+    width: 200px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 25px;
+    transition: all .2s ease-in-out;
+}
+
+.songItemVertical:hover img{
+    filter: brightness(1.2);
+}
+
+.songInfo{
+    padding-left: 10px;
+}
+
+.songInfo h3{
+    color: var(--primaryContrast);
+    font-weight: 500;
+    font-size: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 180px;
+}
+
+.songInfo h5{
+    color: var(--secondaryContrast);
+    font-weight: 300;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 180px;
+}
+
+.songInfo h5:hover{
+    color: var(--tertiary);
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1100px) {
+    .songItemVertical img{
+        width: 180px;
+        border-radius: 22px;
+    }
+    .songInfo h5, .songInfo h3{
+        width: 160px;
+    }
+    .visualizerVertical{
+        height: 180px !important;
+    }
+    .songClickDivVertical{
+        height: 210px !important;
+    }
+}
+
+.recommendedArtist{
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+    border: 1px solid var(--secondaryContrastSeeThrough);
+    aspect-ratio: 4.7/1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: var(--primaryContrast);
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+    padding: 60px;
+}
+.recInfoHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+}
+
+.recBack{
+    opacity: 0.5;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    filter: blur(5px) brightness(0.8);
+}
+#recommendedPP{
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 1px var(--secondarySeeThrough) solid;
+}
+
+.recommendedArtist p{
+    font-size: 15px;
+}
+
+.recommendedArtist h5{
+    font-weight: normal;
+}
+
+.recommendedArtist h1:hover{
+    color: var(--tertiary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.recommended{
+    display: flex; 
+    gap: 30px;
+}
+
+.topChartsHolder{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    
+}
+
+.horizontalSongHolder{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.songItemHorizontal{
+    width: 550px;
+    height: 90px;
+    background-color: var(--secondarySeeThrough);
+    border: 1px solid var(--secondaryContrastSeeThrough);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 35px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.songItemHorizontal:hover{
+    border: 1px solid var(--primarySeeThrough);
+    background-color: var(--primarySeeThrough);
+}
+
+.smallImage{
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    height: 60px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1650px) {
+    .topChartsHolder .songItemHorizontal{
+        width: 500px;
+        height: 75px;
+    }
+    .topChartsHolder .smallImage{
+        height: 50px;
+    }
+
+    .topChartsHolder .visualizerHorizontal{
+        height: 50px !important;
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .topChartsHolder .songItemHorizontal{
+        width: 450px;
+        height: 70px;
+    }
+    .topChartsHolder .smallImage{
+        height: 40px;
+    }
+
+    .topChartsHolder .visualizerHorizontal{
+        height: 40px !important;
+    }
+    .songViews{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    .recommendedArtist{
+        padding: 30px;
+    }
+    .topChartsHolder .horizontalSongHolder{
+        gap: 5px;
+    }
+    .topChartsHolder .songItemHorizontal{
+        height: 60px;
+        border-radius: 15px;
+        padding-left: 10px !important;
+        padding-right: 15px;
+    }
+    .smallImage{
+        height: 40px;
+        border-radius: 7px;
+    }
+    .topChartsHolder .visualizerHorizontal{
+        height: 40px !important;
+        border-radius: 7px !important;
+    }
+    .songViews{
+        display: none;
+    }
+    .visualizerHorizontal{
+        height: 40px !important;
+        border-radius: 7px !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .recInfoHolder{
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .recommendedArtist{
+        aspect-ratio: auto;
+        flex-direction: column;
+    }
+    #recommendedPP{
+        margin-right: 200px;
+        width: 200px;
+    }
+    .recInfoHolder{
+        position: absolute;
+        top: 70px;
+        left: 52.5%;
+        width: 175px;
+    }
+    .topChartsHolder{
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .recInfoHolder{
+        left: 53%;
+    }
+}
+
+.detailsHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.detailsHolder div h3, .detailsHolder div p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 225px;
+}
+
+.likeIcon{
+    font-size: 30px;
+    z-index: 33;
+    transition: all .2s ease-in-out;
+}
+
+.likeIcon:hover{
+    color: var(--tertiary);
+}
+
+.songLikedBtn{
+    color: var(--tertiary) !important;
+    animation: jiggle .5s ease-in-out;
+}
+
+.songLikedBtn:hover{
+    color: #ff4444 !important;
+}
+
+@keyframes jiggle {
+    0%{ transform: rotate(0deg) scale(1); }
+    25%{ transform: rotate(7deg) scale(1.07); }
+    50%{ transform: rotate(0deg) scale(1); }
+    75%{ transform: rotate(4deg) scale(1.04); }
+    100%{ transform: rotate(0deg) scale(1); }
+}
+
+/* ----- PLAYER ----- */
+
+.player{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: var(--secondarySeeThrough);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0px;
+    padding-inline: 20px;
+    z-index: 99;
+}
+
+.playerInfo{
+    display: flex;
+    align-items: center;
+    color: var(--primaryContrast);
+    gap: 20px;
+}
+
+.playerInfo div a{
+    color: var(--secondaryContrast);
+    font-weight: 300;
+}
+
+.playerInfo div a:hover{
+    color: var(--tertiary);
+    text-decoration: underline;
+}
+
+.playerInfo img{
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+}
+
+.playerInfo a, .playerInfo h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+}
+
+.playerControls{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.controls{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.controls .likeIcon{
+    font-size: 27px !important;
+    cursor: pointer;
+}
+
+.playerControls button{
+    cursor: pointer;
+    background-color: transparent;
+    border: 0px;
+}
+
+.playerControls button i{
+    color: var(--primaryContrast);
+    font-size: 25px;
+    transition: all .2s ease-in-out;
+}
+
+#playBtn i{
+    font-size: 40px;
+    color: var(--tertiary);
+}
+
+.repeatBtnOn i{
+    color: var(--tertiary) !important;
+}
+
+#playBtn:hover i{
+    filter: brightness(0.75);   
+}
+
+.playerControls button:hover i{
+    color: var(--secondaryContrast);
+}
+
+.seek{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondaryContrast);
+}
+
+.seek label{
+    pointer-events: none;
+}
+
+.seekInputHolder{
+    position: relative;
+    width: 50%;
+    min-width: 400px;
+    height: 10px;
+    background-color: var(--secondary);
+    border: 1px solid var(--secondaryContrastSeeThrough);
+    border-radius: 10px;
+    display: flex;
+    align-content: center;
+    overflow: hidden;
+}
+
+.seekInputHolder input{
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+}
+
+.seekInputHolder #seekBody{
+    border-radius: 10px;
+    width: 0%;
+    height: 100%;
+    background-color: var(--tertiary);
+}
+
+.seekInputHolder #seekPin{
+    position: absolute;
+    top: -1px;
+    left: 0%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--primaryContrast);
+    border-radius: 50%;
+    box-shadow: calc(-100vw - 5px) 0 0 100vw var(--tertiary), 0px 0px 10px black;
+}
+
+
+#playerVisualizerCanvas{
+    height: 80%;
+    background-color: var(--primary);
+    position: absolute;
+    left: -100%;
+    border-radius: 10px;
+}
+
+.playerVolume{
+    height: 100%;
+    width: 250px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+@media screen and (max-width: 1450px) {
+    .playerInfo h3{
+        font-size: 17px;
+        width: 100px;
+    }
+    .playerInfo a{
+        font-size: 12px;
+        width: 100px;
+    }
+    .playerVolume{
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 961px) {
+    .seek{
+        width: 90%;
+    }
+    .seekInputHolder{
+        width: 80%;
+        min-width: 0px;
+    }
+}
+
+.playerVolume label{
+    cursor: pointer;
+}
+
+.playerVolume label i{
+    width: 20px;
+    font-size: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.playerVolume label:hover i{
+    color: var(--secondaryContrast);
+}
+
+.playerVolume input{
+    cursor: pointer;
+    width: 150px;
+}
+
+@media screen and (max-width: 875px) {
+    .playerInfo{
+        gap: 10px;
+    }
+    .playerInfo img{
+        width: 50px;
+    }
+    .seekInputHolder{
+        width: 100%;
+    }
+    .playerVolume{
+        width: 100px;
+        gap: 5px;
+    }
+    .playerVolume label i{
+        font-size: 17px;
+    }
+    .playerInfo h3{
+        font-size: 17px;
+        width: 50px;
+    }
+    .playerInfo a{
+        font-size: 12px;
+        width: 50px;
+    }
+    .seek label{
+        font-size: 14px;
+    }
+}
+
+/* ----- KLASE ----- */
+
+input[type='range'] {
+    border: 1px solid var(--secondaryContrastSeeThrough);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--secondary);
+}
+  
+input[type='range']::-webkit-slider-runnable-track {
+    height: 10px;
+    -webkit-appearance: none;
+    color: var(--tertiary);
+    animation: colorFadeTeriary 5s ease-in-out infinite;
+}
+
+@keyframes colorFadeTeriary {
+    0%{ color: var(--tertiary); }
+    50%{ color: var(--secondaryContrast); }
+    100%{ color: var(--tertiary); }
+}
+  
+input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    aspect-ratio: 1 / 1;
+    -webkit-appearance: none;
+    background-color: var(--primaryContrast);
+    border-radius: 50%;
+    box-shadow: calc(-100vw - 5px) 0 0 100vw var(--tertiary), 0px 0px 10px black;
+}
+
+
+.displayNone{
+    display: none !important;
+}
+
+.highlightText{
+    color: var(--tertiary);
+    text-shadow:0 0 15px var(--tertiary);
+    cursor: pointer;
+}
+
+button
+{
+    font-family: 'Oxanium', sans-serif;
+}
+
+.fa-solid{
+    cursor: pointer;
+}
+
+/* ----- LOGIN SCREEN ----- */
+
+.loginScreen{
+    background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5vh;
+    gap: 50px;
+    z-index: 1000;
+}
+
+.loginScreen img{
+    width: 100px;
+    aspect-ratio: 1 / 1;
+}
+
+.loginScreen form{
+    background-color: var(--secondary);
+    padding: 30px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--secondaryContrastSeeThrough);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loginScreen form div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+form input, form button{
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 350px;
+    background-color: var(--primaryContrast);
+    color: var(--primary);
+    transition: all .2s ease-in-out;
+}
+
+form button{
+    cursor: pointer;
+}
+
+form button i{
+    margin-right: 10px;
+    color: var(--primary);
+}
+
+#registerBtn, #logInBtn{
+    cursor: pointer;
+    background-color: var(--tertiary);
+    color: white;
+}
+
+#registerBtn:hover, #logInBtn:hover, form button:hover{
+    filter: brightness(0.75);
+}
+
+.errorMessage{
+    color: #ff4444;
+    text-transform: capitalize;
+}
+
+.songClickDivHorizontal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.songClickDivVertical{
+    z-index: 33;
+    position: absolute;
+    width: 100%;
+    height: 235px;
+    border-radius: 25px;
+    top: 0;
+    left: 0;
+}
+
+@media screen and (max-height: 800px) {
+    .loginScreen{
+        gap: 20px;
+        padding-top: 20px;
+    }
+    .loginScreen img{
+        width: 75px;
+    }
+}
+
+/* LOADER */
+#loaderHolder, #searchLoaderHolder{
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    position: absolute;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchLoaderHolder{
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+
+#loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#loader span{
+    width: 18px;
+    height: 30px;
+    background-color: var(--tertiary);
+    animation: dancing 2.5s infinite ease;
+    border-radius: 9px;
+    border: 1px var(--secondary) solid;
+}
+#searchLoaderHolder span{
+    width: 7px;
+    height: 7px;
+    background-color: var(--tertiary);
+    animation: dancing2 2.5s infinite ease;
+    border-radius: 3px;
+    border: 1px var(--secondary) solid;
+}
+
+@keyframes dancing2 {
+    0%{height: 7px;}
+    50%{height: 28px;}
+    100%{height: 7px;}
+}
+
+@keyframes dancing {
+    0%{height: 30px;}
+    50%{height: 120px;}
+    100%{height: 30px;}
+}
+
+#loader span:nth-child(2){
+    animation-delay: 0.3s;
+}
+#loader span:nth-child(3){
+    animation-delay: 0.6s;
+}
+#loader span:nth-child(4){
+    animation-delay: 0.9s;
+}
+#loader span:nth-child(5){
+    animation-delay: 1.2s;
+}
+
+.infoPage {
+    text-decoration: none;
+}
+
+/* CHECKBOX FOR THEME */
+#checkboxHolder{
+    width: 110px;
+    height: 38px;
+    border-radius: 30px;
+    margin-top:10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: var(--primaryContrast);
+    border:1px var(--primaryContrast) solid;
+}
+#checkboxHolder input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+}
+#checkboxContent{
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 30px;
+    transition: all .4s ease-in-out;
+    background-color: var(--primary);
+    border: solid 3px var(--primary);
+    position: absolute;
+}
+#checkboxHolder:hover #checkboxContent{
+    border-color: var(--tertiary);
+}
+.defaultTheme{
+    left: 3px;
+}
+.notDefaultTheme{
+    left: 75px;
+}
+
+.visualizerVertical{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3; 
+    opacity: 0.5;
+    width: 100%;
+    height: 200px;
+    border-radius: 25px;
+}
+
+.visualizerHorizontal{
+    position: absolute;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    height: 60px;
+    border-radius: 10px;
+    opacity: 0.5;
+}

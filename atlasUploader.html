@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Uploader</title>
+    <link rel="stylesheet" href="Css/uploader.css">
+    <link rel="shortcut icon" href="Images/AtlasLogobyDesignerLight.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/1d408b5acd.js" crossorigin="anonymous"></script>
+    <script src="Js/uploader.js" type="module"></script>
+    <script>
+        function clearFormSong(){
+            document.getElementById("songBannerInputPreview").src = 'Images/noPhoto.png';
+            document.getElementById("songAudioInputPreview").src = '';
+            document.querySelectorAll('.pbInner').forEach((inner) => {
+                inner.style.width = '0%';
+            })
+        }
+        function clearFormArtist(){
+            document.getElementById("artistBannerPreview").src = 'Images/noPhotoBanner.png';
+            document.getElementById("artistProfilePreview").src = 'Images/noPhoto.png';
+            document.querySelectorAll('.pbInner').forEach((inner) => {
+                inner.style.width = '0%';
+            })
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="searchBar">
+            <label for="searchInput"><i class="fa-solid fa-magnifying-glass"></i></label>
+            <input id="searchInput" type="search" placeholder="Search">
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html"><img src="Images/AtlasLogobyDesignerLight.png" alt="Atlas Logo"></a>
+
+        <div class="navLinks">
+            <a href="index.html"><i class="fa-solid fa-house"></i></a>
+        </div>
+    </nav>
+    
+    <main>
+        <h2>Song Upload</h2>
+        <form id="songForm">
+            <div class="mainSongInfo">
+                <div class="imageUploadDiv">
+                    <img src="Images/noPhoto.png" alt="Image Banner" id="songBannerInputPreview">
+                    <input type="file" name="songInfo" id="songBannerInput">
+                    <label id="songBannerLabel" for="songBannerInput"><i class="fa-solid fa-image"></i>&nbsp;&nbsp;Upload image</label>
+                    <div id="progressBar"><div class="pbInner" id="progressBarSpan"></div></div>
+                    <audio src="" controls id="songAudioInputPreview"></audio>
+                    <input type="file" name="songInfo" id="songAudioInput">
+                    <label id="songAudioLabel" for="songAudioInput"><i class="fa-solid fa-music"></i>&nbsp;&nbsp;Upload audio file</label>
+                    <div id="progressBar2"><div class="pbInner" id="progressBarSpan2"></div></div>            
+                </div>
+                <div class="textUploadDiv">
+                    <div>
+                        <label for="songTitleInput">Title</label>
+                        <input type="text" placeholder="Name the song please" id="songTitleInput" name="songInfo">
+                    </div>
+                    <div>
+                        <label for="songArtistInput">Artist</label>
+                        <select name="songInfo" id="artistInput">                        
+                        </select>
+                    </div>
+                    <div>
+                        <label for="songCatInput">Genre<span>&nbsp;(Choose the one that fits best)</span></label>
+                        <select name="songInfo" id="songCatInput">
+                            <option selected value="1">Phonk</option>
+                            <option value="2">HardStyle</option>
+                            <option value="3">DnB</option>
+                            <option value="4">Pop</option>
+                            <option value="5">Rap</option>
+                            <option value="6">Rock</option>
+                            <option value="7">Lo-fi</option>
+                            <option value="8">Jazz</option>
+                            <option value="8">Electronic</option>
+                            <option value="9">Jazz</option>
+                            <option value="10">Country</option>                     
+                        </select>
+                    </div>
+                    <div id="submitFormBtns">
+                        <button id="resetSongFormBtn" onclick="clearFormSong()" type="reset" value="Reset">Reset</button>
+                        <button type="submit" value="Upload" id="upBtn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+        <h2>Artist Upload</h2>
+        <form id="artistForm">
+            <div class="artistBannerHolder">
+                <img id="artistBannerPreview" src="Images/noPhotoBanner.png" alt="Artist Banner">
+                <div>
+                    <label for="artistBannerInput"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                    <input type="file" name="artistInfo" id="artistBannerInput">
+                </div>
+                <section id="progressBar4" class="bigLoader"><section class="pbInner" id="progressBarSpan4"></section></section> 
+            </div>
+            <div class="artistProfileImageHolder">
+                <img id="artistProfilePreview" src="Images/noPhoto.png" alt="Artist Profile Photo">
+                <div>
+                    <label for="artistProfileInput"><i class="fa-solid fa-arrow-up-from-bracket"></i></label>
+                    <input type="file" name="artistInfo" id="artistProfileInput">
+                </div>
+                <section id="progressBar3" class="bigLoader"><section class="pbInner" id="progressBarSpan3"></section></section> 
+            </div>
+            <div class="textUploadDiv">
+                <div>
+                    <label for="artistNameInput">Name / Alias</label>
+                    <input type="text" placeholder="What's your name?" id="artistNameInput" name="artistInfo">
+                </div>
+                <div>
+                    <label for="artistDescInput">Description</label>
+                    <input type="text" placeholder="A little bit about you" id="artistDescInput" name="artistInfo">
+                </div>
+                <div>
+                    <label for="artistCatInput">Genre<span>&nbsp;(Choose the one that fits best)</span></label>
+                    <select name="artistInfo" id="artistCatInput">
+                        <option selected value="1">Phonk</option>
+                        <option value="2">HardStyle</option>
+                        <option value="3">DnB</option>
+                        <option value="4">Pop</option>
+                        <option value="5">Rap</option>
+                        <option value="6">Rock</option>
+                        <option value="7">Lo-fi</option>
+                        <option value="8">Jazz</option>
+                        <option value="8">Electronic</option>
+                        <option value="9">Jazz</option>
+                        <option value="10">Country</option>                     
+                    </select>
+                </div>
+            <div>
+            <div id="submitFormBtns">
+                <button id="resetArtistFormBtn" onclick="clearFormArtist()" type="reset" value="Reset">Reset</button>
+                <button type="submit" value="Upload" id="upBtn2">Submit</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

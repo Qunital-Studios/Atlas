@@ -1,0 +1,105 @@
+.artistPage{
+    
+}
+.artistProfileHolder{
+    position: relative;
+    height: fit-content;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.artistBanner{
+    width: 100%;
+    height: 350px;
+    border-radius: 32px;
+    object-fit: cover;
+    border: 1px solid var(--primary);
+}
+.artistProfilePicture{
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border: 1px solid var(--primary);
+    border-radius: 25px;
+}
+.artistDetailsHolder{
+    position: absolute;
+    top: 220px;
+    left: 5%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.artistDetails{
+    padding-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.artistDetails h1{
+    width: fit-content;
+    padding-inline: 10px;
+    background-color:var(--primarySeeThrough)
+
+}
+.artistDetails p{
+    width: fit-content;
+    padding-inline: 10px;
+    padding-block: 5px;
+    background-color:var(--primarySeeThrough);
+}
+.Follow
+{
+    padding-inline: 40px;
+    padding-block: 10px;
+    border-radius: 32px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 45%;
+    cursor: pointer;
+    right: 20px;
+    border: 1px solid var(--primary);
+    gap: 10px;
+    max-width: 150px;
+    justify-self: flex-end;
+}
+.artistDescription{
+    background-color:transparent !important;
+    padding-left: 0px !important;
+    padding-top: 16px !important;
+    padding-right: 195px !important;
+}
+
+
+
+.artistsContent{
+    margin-top: 130px;
+    width: 100%;
+    display: flex;
+    gap: 190px;
+    justify-content: center;
+}
+
+.artistsSongHolder{
+    display: flex;
+    flex-direction: column;
+    min-width: 60%;
+}
+
+.artistsSongHolder li{
+    width: 100%;
+}
+
+.similarArtistsHolder
+{
+    width: 40%;
+}
+.similarArtists{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
