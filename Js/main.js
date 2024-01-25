@@ -949,6 +949,7 @@ function getLikedSongs(){
       if(snapshot.exists()){
         let likedSongs = snapshot.val().LikedSongs;
         likedSongs = likedSongs.split(',');
+        likedSongs.pop();
         resolve(likedSongs.reverse());
       }
     })
@@ -959,10 +960,15 @@ async function refreshLiked(){
   let varr = await getLikedSongs();
   document.querySelector('.likedSongsHolder').innerHTML = "";
   let br = -1;
-  varr.forEach(async(likeSong) => {
-    let result = await fillLikedSongs(likeSong, br++);
+  if(varr == ""){
     setNumberOfLikedSongs();
-  })
+  }else{
+    varr.forEach(async(likeSong) => {
+      await fillLikedSongs(likeSong, br);
+      br++;
+      setNumberOfLikedSongs();
+    })
+  }
 }
 
 export function followArtist(artistId){
