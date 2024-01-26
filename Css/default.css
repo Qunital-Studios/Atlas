@@ -430,6 +430,7 @@ section h2{
 .recommendedArtist{
     position: relative;
     overflow: hidden;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.6);
     border-radius: 40px;
     border: 1px solid var(--secondaryContrastSeeThrough);
     aspect-ratio: 4.7/1;
